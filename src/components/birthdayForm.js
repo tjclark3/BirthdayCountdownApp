@@ -45,7 +45,7 @@ class BirthdayForm extends Component {
 
                 <div>
                     <Clock birthdayFormState={this.state}/>
-                    <a onClick={this.handleGenerate}>Change Date</a>
+                    <a className="change-date" onClick={this.handleChangeDate}>Change Date</a>
                 </div>
             :
                 <div>
