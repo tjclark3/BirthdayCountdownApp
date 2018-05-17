@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import Clock from './clock';
+import Clock from './Clock';
 
 class BirthdayForm extends Component {
 
@@ -11,7 +11,7 @@ class BirthdayForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleGenerate = this.handleGenerate.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
-        
+
         this.state = {
             startDate: moment(),
             formCompleted: false
@@ -25,10 +25,11 @@ class BirthdayForm extends Component {
         });
     }
 
-    handleGenerate() {
+    handleGenerate(event) {
         this.setState({
             formCompleted: true
         })
+        event.preventDefault();
     }
 
     handleChangeDate() {
@@ -39,25 +40,27 @@ class BirthdayForm extends Component {
 
     render() {
         return (
-            <div>
+            <form onSubmit={this.handleGenerate} className="birthday-container">
             {
-                this.state.formCompleted ? 
+                this.state.formCompleted ?
+                    <div className="clock-container">
+                        <Clock birthdayFormState={this.state}/>
+                        <a className="change-date" onClick={this.handleChangeDate}>Change Date</a>
+                    </div>
+                :
+                    <div className="date-picker-container">
+                        <DatePicker className="date-picker"
+                            selected={this.state.startDate}
+                            onChange={this.handleChange}
+                        />
+                        <div className="submit-container">
+                            <input type="submit" value="Generate Countdown"/>
+                        </div>
+                    </div>
 
-                <div>
-                    <Clock birthdayFormState={this.state}/>
-                    <a className="change-date" onClick={this.handleChangeDate}>Change Date</a>
-                </div>
-            :
-                <div>
-                    <DatePicker
-                        selected={this.state.startDate}
-                        onChange={this.handleChange}
-                    />
-                    <a onClick={this.handleGenerate}>Generate Countdown</a>
-                </div>
-            }                 
-            </div>
-        )    
+            }
+            </form>
+        )
     }
 }
 

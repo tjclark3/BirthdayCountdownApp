@@ -17,10 +17,10 @@ h1 {
 
 }
 
-.header_skew {
+.header__skew {
     @include header-background;
 }
 
-.header_subskew {
+.header__subskew {
     @include header-background(var(--blue-secondary), $clip-path: polygon(0 100%, 0 0, 0 40%, 16% 100%));
 }

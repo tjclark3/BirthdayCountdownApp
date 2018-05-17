@@ -6,14 +6,14 @@ export default class App extends Component {
     return (
       <div>
         <header>
-          <h1>It Is Your Birthday Countdown</h1>
-          <div className="header_skew">
-            <div className="header_subskew">
-                         
-            </div>
+          <h1>Birthday Countdown</h1>
+          <div className="header__skew">
+              <div className="header__subskew">
+                 
+              </div>
           </div>
-         </header>
-         <BirthdayForm />
+        </header>
+        <BirthdayForm />
       </div>
     );
   }
